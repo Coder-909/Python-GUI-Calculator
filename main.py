@@ -1,23 +1,32 @@
+# Import *(everything) from Tkinter
 from tkinter import *
 
+# Creation and assignment of some basic variables used in the program
 result = 0
 operator = ""
 field_length = 0
+
+# Creating a window by using Tkinter and giving it a title
 root = Tk()
-root.title("Simple Calculator")
+root.title("Python GUI Calculator")
+
+# Creating the display field 
 field = Entry(root,width=30)
 field.grid(row=0,column=0,columnspan=3)
 
+# Function to add a digit to the display field
 def post(num):
 	field_value = field.get()
 	field.delete(0,END)
 	field.insert(0,str(field_value)+str(num))
 
+# Function to delete a single digit
 def delete():
 	field_value = field.get()
 	field.delete(0,END)
 	field.insert(0,field_value[0:-1])
 
+# Function to clear the display field
 def clear():
 	global result,field_length,operator
 	result = 0
@@ -25,7 +34,7 @@ def clear():
 	operator = ""
 	field.delete(0,END)
 
-# trying to make a calculator with all the input in the field bar
+# Function to add when the "+" button is pressed
 def addition():
 	global result,operator,field_length
 	field_value = field.get()
@@ -43,7 +52,7 @@ def addition():
 	operator="+"
 	post("+")
 
-
+# Function to substract when the "-" button is pressed
 def substraction():
 	global result,operator,field_length
 	field_value = field.get()
@@ -61,6 +70,7 @@ def substraction():
 	operator="-"
 	post("-")
 
+# Function to multiply when the "*" button is pressed
 def multiplication():
 	global result,operator,field_length
 	field_value = field.get()
@@ -78,6 +88,7 @@ def multiplication():
 	operator="*"
 	post("*")
 
+# Function to divide when the "/" button is pressed
 def division():
 	global result,operator,field_length
 	field_value = field.get()
@@ -95,6 +106,7 @@ def division():
 	operator="/"
 	post("/")
 
+# Function to evaluate when the "=" button is pressed
 def evaluate():
 	global result,operator,field_length
 	field_value = field.get()
@@ -113,6 +125,7 @@ def evaluate():
 	result = 0
 	field_length = 0
 
+# Adding Number button to the GUI
 one = Button(root,text="1",command=lambda: post(1),padx=33,pady=14).grid(row=1,column=0)
 two = Button(root,text="2",command=lambda: post(2),padx=33,pady=14).grid(row=1,column=1)
 three = Button(root,text="3",command=lambda: post(3),padx=33,pady=14).grid(row=1,column=2)
@@ -125,8 +138,11 @@ seven = Button(root,text="7",command=lambda: post(7),padx=33,pady=14).grid(row=3
 eight = Button(root,text="8",command=lambda: post(8),padx=33,pady=14).grid(row=3,column=1)
 nine = Button(root,text="9",command=lambda: post(9),padx=33,pady=14).grid(row=3,column=2)
 	
-zero = Button(root,text="0",command=lambda: post(0),padx=33,pady=14).grid(row=4,column=1)
+zero = Button(root,text="0",command=lambda: post(0),padx=33,pady=14).grid(row=4,column=1
+									  
 decimal = Button(root,text=".",command=lambda: post("."),padx=36,pady=14).grid(row=4,column=0)
+									  
+# Adding operators button to the GUI
 delete = Button(root,text="<-",command=delete,padx=29,pady=14).grid(row=5,column=2) 
 equalto = Button(root,text="=",command=evaluate,padx=33,pady=14).grid(row=4,column=2)
 add = Button(root,text="+",command=addition,padx=33,pady=14).grid(row=5,column =0)
@@ -135,7 +151,4 @@ multiplication = Button(root,text="*",command=multiplication,padx=33,pady=14).gr
 division = Button(root,text="/",command=division,padx=33,pady=14).grid(row=6,column=1)
 clear = Button(root,text="Clear",command=clear,padx=23,pady=14).grid(row=6,column=2)
 
-
-
 root.mainloop()
-
